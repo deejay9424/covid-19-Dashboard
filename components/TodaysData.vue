@@ -40,7 +40,7 @@ export default {
 <style>
 .inner-card {
   width: 24% !important;
-  display: inline-block;
+  display: inline-block !important;
 }
 .inner-card .v-card__title {
     color: orangered;
@@ -51,7 +51,7 @@ export default {
 @media only screen and (max-width: 600px) {
   .inner-card {
     width: 24% !important;
-    display: contents;
+    display: contents !important;
   }
 }
 </style>
