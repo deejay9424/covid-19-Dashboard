@@ -1,3 +1,4 @@
+const colors = require('vuetify/es5/util/colors').default
 
 module.exports = {
   mode: 'spa',
@@ -41,6 +42,7 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '@nuxtjs/vuetify',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
   ],
@@ -50,6 +52,9 @@ module.exports = {
   */
   axios: {
   },
+  env: {
+    baseURL: 'https://corona.lmao.ninja/'
+  },
   /*
   ** Build configuration
   */
@@ -57,7 +62,22 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
+    extend(config, ctx) {
+    }
+  },
+  /*
+  ** vuetify module configuration
+  ** https://github.com/nuxt-community/vuetify-module
+  */
+  vuetify: {
+    theme: {
+      primary: colors.blue.darken2,
+      accent: colors.grey.darken3,
+      secondary: colors.amber.darken3,
+      info: colors.teal.lighten1,
+      warning: colors.amber.base,
+      error: colors.deepOrange.accent4,
+      success: colors.green.accent3
     }
   }
 }
