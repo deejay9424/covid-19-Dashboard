@@ -1,9 +1,15 @@
 <template>
   <v-container fill-height fluid grid-list-xl>
     <v-layout justify-center wrap>
+      <!-- 
       <v-flex class="todays-data">
         <TodaysData :todaysData="todaysData"></TodaysData>
+      </v-flex>-->
+
+      <v-flex col xs>
+        <TodaysChart :pieChartData="pieChartData"></TodaysChart>
       </v-flex>
+
       <v-flex>
         <v-card>
           <v-card-title>
@@ -30,6 +36,8 @@
 <script>
 import Table from "~/components/Table.vue";
 import TodaysData from "~/components/TodaysData.vue";
+import TodaysChart from "~/components/TodaysChart.vue";
+import TrendChart from "~/components/TrendChart.vue";
 
 export default {
   data: () => ({
@@ -48,7 +56,9 @@ export default {
   }),
   components: {
     Table,
-    TodaysData
+    TodaysData,
+    TodaysChart,
+    TrendChart
   },
   computed: {
     arrayData() {
@@ -56,6 +66,12 @@ export default {
     },
     todaysData() {
       return this.$store.getters.getTodaysData;
+    },
+    pieChartData() {
+      return this.$store.getters.getPieData;
+    },
+    trendChartData(){
+      return this.$store.getters.getTrendChartData;
     }
   },
   created() {
@@ -105,4 +121,5 @@ export default {
 .todays-data {
   min-width: 100%;
 }
+
 </style>

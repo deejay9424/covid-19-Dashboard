@@ -11,5 +11,11 @@ export default {
         state.todaysData.recovered = state.fnThousandSeperator(state.todaysData.recovered)
         state.todaysData.updated = state.fnThousandSeperator(state.todaysData.updated)
         return state.todaysData;
+    },
+    getPieData(state){
+        return state.worldWidePieData;
+    },
+    getTrendChartData(state){
+        return state.trendChartData;
     }
 }

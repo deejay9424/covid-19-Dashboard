@@ -29,6 +29,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    { src: "@/plugins/chart", ssr: true }
   ],
   /*
   ** Nuxt.js dev-modules

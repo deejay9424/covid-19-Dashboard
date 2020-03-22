@@ -12,12 +12,27 @@ export default ({
     },
     covid19Data: [],
     todaysData: {
-        cases:0,
-        deaths:0,
-        recovered:0,
-        updated:0
+        cases: 0,
+        deaths: 0,
+        recovered: 0,
+        updated: 0
     },
     fnThousandSeperator(number) {
-      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+    worldWidePieData: {
+        datasets: [
+            {
+                data: [],
+                backgroundColor: [],
+                hoverBackgroundColor: []
+            }
+        ],
+        labels: [],
+        option: {}
+    },
+    trendChartData:{
+        labels:[],
+        datasets:[]
     }
 })
