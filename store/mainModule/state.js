@@ -31,8 +31,19 @@ export default ({
         labels: [],
         option: {}
     },
-    trendChartData:{
-        labels:[],
-        datasets:[]
+    trendChartData: {
+        labels: [],
+        datasets: []
+    },
+    indiaData: {
+        summary: {
+            total: 0,
+            confirmedCasesIndian: 0,
+            confirmedCasesForeign: 0,
+            discharged: 0,
+            deaths: 0,
+            confirmedButLocationUnidentified: 0
+        },
+        regional: []
     }
 })

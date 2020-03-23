@@ -54,7 +54,8 @@ module.exports = {
   axios: {
   },
   env: {
-    baseURL: 'https://corona.lmao.ninja/'
+    baseURL: 'https://corona.lmao.ninja/',
+    indiaAPI: 'https://api.rootnet.in/covid19-in/stats/latest'
   },
   /*
   ** Build configuration

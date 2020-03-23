@@ -43,5 +43,19 @@ export default {
     catch (exp) {
       console.log(exp)
     }
+  },
+  getIndianStatesData(context) {
+    try {
+      axios.get(process.env.indiaAPI)
+        .then(response => {
+          context.commit("POPULATE_STATES_CHART_DATA", response.data);
+        })
+        .catch(exp => {
+          console.log(exp)
+        })
+    }
+    catch (exp) {
+      console.log(exp)
+    }
   }
 }

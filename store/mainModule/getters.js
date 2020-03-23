@@ -17,5 +17,8 @@ export default {
     },
     getTrendChartData(state){
         return state.trendChartData;
+    },
+    getStatesChartData(state){
+        return state.indiaData;
     }
 }

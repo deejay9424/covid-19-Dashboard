@@ -1,13 +1,16 @@
 <template>
   <v-container fill-height fluid grid-list-xl>
     <v-layout justify-center wrap>
-      <!-- 
-      <v-flex class="todays-data">
-        <TodaysData :todaysData="todaysData"></TodaysData>
-      </v-flex>-->
-
       <v-flex col xs>
-        <TodaysChart :pieChartData="pieChartData"></TodaysChart>
+        <TodaysChart :pieChartData="pieChartData" v-if="pieChartData.option.responsive"></TodaysChart>
+      </v-flex>
+
+      <!-- <v-flex col xs>
+        <IndiaPieChart :pieChartData="indiaData" v-if="pieChartData.option.responsive"></IndiaPieChart>
+      </v-flex> -->
+      
+      <v-flex col xs>
+        <TrendChart :trendChartData="trendChartData" v-if="trendChartData.labels.length > 0"></TrendChart>
       </v-flex>
 
       <v-flex>
@@ -70,8 +73,12 @@ export default {
     pieChartData() {
       return this.$store.getters.getPieData;
     },
-    trendChartData(){
+    trendChartData() {
       return this.$store.getters.getTrendChartData;
+    },
+    indiaData() {
+      console.log(this.$store.getters.getStatesChartData);
+      return this.$store.getters.getStatesChartData.summary;
     }
   },
   created() {
@@ -81,6 +88,8 @@ export default {
     initialize() {
       this.$store.dispatch("getDataFromAPI");
       this.$store.dispatch("getTodaysData");
+      this.$store.dispatch("getHistoricalData");
+      this.$store.dispatch("getIndianStatesData");
     }
   }
 };
@@ -121,5 +130,4 @@ export default {
 .todays-data {
   min-width: 100%;
 }
-
 </style>
