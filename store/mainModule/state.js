@@ -36,6 +36,20 @@ export default ({
         datasets: []
     },
     indiaData: {
+        pieChart: {
+            datasets: [
+                {
+                    data: [],
+                    backgroundColor: [],
+                    hoverBackgroundColor: []
+                }
+            ],
+            labels: [],
+            option: {}
+        },
+        statesData: {
+
+        },
         summary: {
             total: 0,
             confirmedCasesIndian: 0,

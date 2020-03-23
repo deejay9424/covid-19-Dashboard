@@ -23,7 +23,6 @@ export default {
         state.worldWidePieData.labels.push("Recovered");
         //Options
         state.worldWidePieData.option = {
-            backgroundColor: 'pink',
             legend: {
                 display: true,
                 position: 'left'
@@ -74,8 +73,28 @@ export default {
     },
     POPULATE_STATES_CHART_DATA(state, payload) {
         if (payload.success) {
-            state.indiaData.summary = payload.data.summary;
-            state.indiaData.regional = payload.data.regional;
+            //Data
+            state.indiaData.pieChart.datasets[0].data.push(payload.data.summary.confirmedCasesIndian + payload.data.summary.confirmedCasesForeign);
+            state.indiaData.pieChart.datasets[0].data.push(payload.data.summary.deaths);
+            state.indiaData.pieChart.datasets[0].data.push(payload.data.summary.discharged);
+            //Colors
+            state.indiaData.pieChart.datasets[0].backgroundColor.push("#2d4275");
+            state.indiaData.pieChart.datasets[0].backgroundColor.push("red");
+            state.indiaData.pieChart.datasets[0].backgroundColor.push("green");
+            //Labels
+            state.indiaData.pieChart.labels.push("Cases");
+            state.indiaData.pieChart.labels.push("Deaths");
+            state.indiaData.pieChart.labels.push("Recovered");
+            //Options
+            state.indiaData.pieChart.option = {
+                legend: {
+                    display: true,
+                    position: 'left'
+                },
+                maintainAspectRatio: false,
+                responsive: true
+            }
+            //state.indiaData.regional = payload.data.regional;
         }
     }
 }

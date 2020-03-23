@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title>Worldwide</v-card-title>
+    <v-card-title>{{header}}</v-card-title>
     <v-divider></v-divider>
     <v-card-text>
       <div class="card-img-bottom">
@@ -17,7 +17,8 @@
 <script>
 export default {
   props: {
-    pieChartData: { type: Object, required: false }
+    pieChartData: { type: Object, required: false },
+    header: { type: String, required: true }
   },
   methods: {}
 };

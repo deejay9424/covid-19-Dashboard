@@ -2,13 +2,21 @@
   <v-container fill-height fluid grid-list-xl>
     <v-layout justify-center wrap>
       <v-flex col xs>
-        <TodaysChart :pieChartData="pieChartData" v-if="pieChartData.option.responsive"></TodaysChart>
+        <TodaysChart
+         :pieChartData="pieChartData"
+         v-if="pieChartData.option.responsive"
+         :header="worldWideChartHeader"
+        ></TodaysChart>
       </v-flex>
 
-      <!-- <v-flex col xs>
-        <IndiaPieChart :pieChartData="indiaData" v-if="pieChartData.option.responsive"></IndiaPieChart>
-      </v-flex> -->
-      
+      <v-flex col xs>
+        <TodaysChart 
+          :pieChartData="getIndiaChartData"
+          v-if="getIndiaChartData.option.responsive"
+          :header="indiaChartHeader"
+        ></TodaysChart>
+      </v-flex>
+
       <v-flex col xs>
         <TrendChart :trendChartData="trendChartData" v-if="trendChartData.labels.length > 0"></TrendChart>
       </v-flex>
@@ -29,6 +37,7 @@
           <Table :headers="headers" :data="arrayData" :searchText="searchText"></Table>
         </v-card>
       </v-flex>
+      
     </v-layout>
     <v-footer :fixed="true" app>
       <span>Developer Contact : Dhruv Jain</span>
@@ -55,7 +64,9 @@ export default {
       { text: "Active Cases", value: "active", sortable: true },
       { text: "Critical Cases", value: "critical", sortable: true },
       { text: "Cases/Million", value: "casesPerOneMillion", sortable: true }
-    ]
+    ],
+    worldWideChartHeader:"Worldwide",
+    indiaChartHeader:"India"
   }),
   components: {
     Table,
@@ -76,9 +87,8 @@ export default {
     trendChartData() {
       return this.$store.getters.getTrendChartData;
     },
-    indiaData() {
-      console.log(this.$store.getters.getStatesChartData);
-      return this.$store.getters.getStatesChartData.summary;
+    getIndiaChartData() {
+      return this.$store.getters.getIndiaChartData;
     }
   },
   created() {

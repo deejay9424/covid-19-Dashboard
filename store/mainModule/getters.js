@@ -18,7 +18,7 @@ export default {
     getTrendChartData(state){
         return state.trendChartData;
     },
-    getStatesChartData(state){
-        return state.indiaData;
+    getIndiaChartData(state){
+        return state.indiaData.pieChart;
     }
 }
