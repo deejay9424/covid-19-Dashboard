@@ -3,14 +3,14 @@
     <v-layout justify-center wrap>
       <v-flex col xs>
         <TodaysChart
-         :pieChartData="pieChartData"
-         v-if="pieChartData.option.responsive"
-         :header="worldWideChartHeader"
+          :pieChartData="pieChartData"
+          v-if="pieChartData.option.responsive"
+          :header="worldWideChartHeader"
         ></TodaysChart>
       </v-flex>
 
       <v-flex col xs>
-        <TodaysChart 
+        <TodaysChart
           :pieChartData="getIndiaChartData"
           v-if="getIndiaChartData.option.responsive"
           :header="indiaChartHeader"
@@ -19,6 +19,30 @@
 
       <v-flex col xs>
         <TrendChart :trendChartData="trendChartData" v-if="trendChartData.labels.length > 0"></TrendChart>
+      </v-flex>
+
+      <v-flex class="map-chart">
+        <IndiaMap :data="getGeoChartData.cases"
+         :divID="'1'"
+         :chartColor="['#2d4275']"
+         :cardTitle="'Cases'">
+        </IndiaMap>
+      </v-flex>
+
+      <v-flex class="map-chart">
+        <IndiaMap :data="getGeoChartData.deaths"
+         :divID="'2'"
+         :chartColor="['red']"
+         :cardTitle="'Deaths'">
+        </IndiaMap>
+      </v-flex>
+
+      <v-flex class="map-chart">
+        <IndiaMap :data="getGeoChartData.recovered"
+         :divID="'3'"
+         :chartColor="['green']"
+         :cardTitle="'Recovered'"
+        ></IndiaMap>
       </v-flex>
 
       <v-flex>
@@ -34,10 +58,10 @@
               hide-details
             ></v-text-field>
           </v-card-title>
+          <v-divider></v-divider>
           <Table :headers="headers" :data="arrayData" :searchText="searchText"></Table>
         </v-card>
       </v-flex>
-      
     </v-layout>
     <v-footer :fixed="true" app>
       <span>Developer Contact : Dhruv Jain</span>
@@ -50,6 +74,7 @@ import Table from "~/components/Table.vue";
 import TodaysData from "~/components/TodaysData.vue";
 import TodaysChart from "~/components/TodaysChart.vue";
 import TrendChart from "~/components/TrendChart.vue";
+import IndiaMap from "~/components/IndiaMap.vue";
 
 export default {
   data: () => ({
@@ -65,14 +90,15 @@ export default {
       { text: "Critical Cases", value: "critical", sortable: true },
       { text: "Cases/Million", value: "casesPerOneMillion", sortable: true }
     ],
-    worldWideChartHeader:"Worldwide",
-    indiaChartHeader:"India"
+    worldWideChartHeader: "Worldwide",
+    indiaChartHeader: "India"
   }),
   components: {
     Table,
     TodaysData,
     TodaysChart,
-    TrendChart
+    TrendChart,
+    IndiaMap
   },
   computed: {
     arrayData() {
@@ -89,6 +115,10 @@ export default {
     },
     getIndiaChartData() {
       return this.$store.getters.getIndiaChartData;
+    },
+    getGeoChartData() {
+      // console.log(this.$store.getters.getGeoChartData)
+      return this.$store.getters.getGeoChartData;
     }
   },
   created() {
@@ -139,5 +169,17 @@ export default {
 
 .todays-data {
   min-width: 100%;
+}
+
+.map-chart {
+  width: 33.33%;
+  height: 350px;
+}
+
+@media only screen and (max-width: 600px) {
+  .map-chart {
+    width: 100%;
+    height: 350px;
+  }
 }
 </style>

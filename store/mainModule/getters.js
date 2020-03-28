@@ -12,13 +12,16 @@ export default {
         state.todaysData.updated = state.fnThousandSeperator(state.todaysData.updated)
         return state.todaysData;
     },
-    getPieData(state){
+    getPieData(state) {
         return state.worldWidePieData;
     },
-    getTrendChartData(state){
+    getTrendChartData(state) {
         return state.trendChartData;
     },
-    getIndiaChartData(state){
+    getIndiaChartData(state) {
         return state.indiaData.pieChart;
+    },
+    getGeoChartData(state) {
+        return state.indiaData.regional;
     }
 }

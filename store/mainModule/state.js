@@ -58,6 +58,10 @@ export default ({
             deaths: 0,
             confirmedButLocationUnidentified: 0
         },
-        regional: []
+        regional: {
+            cases: [],
+            recovered: [],
+            deaths: []
+        }
     }
 })

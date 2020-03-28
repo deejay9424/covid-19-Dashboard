@@ -72,6 +72,9 @@ export default {
         // });
     },
     POPULATE_STATES_CHART_DATA(state, payload) {
+        state.indiaData.regional.cases = [];
+        state.indiaData.regional.deaths = [];
+        state.indiaData.regional.recovered = [];
         if (payload.success) {
             //Data
             state.indiaData.pieChart.datasets[0].data.push(payload.data.summary.confirmedCasesIndian + payload.data.summary.confirmedCasesForeign);
@@ -94,7 +97,26 @@ export default {
                 maintainAspectRatio: false,
                 responsive: true
             }
-            //state.indiaData.regional = payload.data.regional;
+            state.indiaData.regional.cases = [
+                ["State", "Cases"]
+            ];
+            state.indiaData.regional.deaths = [
+                ["State", "Deaths"]
+            ];
+            state.indiaData.regional.recovered = [
+                ["State", "Recovered"]
+            ];
+            payload.data.regional.forEach(element => {
+                state.indiaData.regional.cases.push(
+                    [element.loc, (element.confirmedCasesIndian + element.confirmedCasesForeign)]
+                );
+                state.indiaData.regional.deaths.push(
+                    [element.loc, element.deaths]
+                );
+                state.indiaData.regional.recovered.push(
+                    [element.loc, element.discharged]
+                );
+            });
         }
     }
 }

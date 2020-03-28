@@ -32,7 +32,7 @@ export default {
   },
   getHistoricalData(context) {
     try {
-      axios.get(process.env.baseURL + "historical/India")
+      axios.get(process.env.baseURL + "v2/historical/India")
         .then(response => {
           context.commit("POPULATE_TREND_CHART_DATA", response.data);
         })
