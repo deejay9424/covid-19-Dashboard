@@ -130,6 +130,7 @@ export default {
       this.$store.dispatch("getTodaysData");
       this.$store.dispatch("getHistoricalData");
       this.$store.dispatch("getIndianStatesData");
+      this.$store.dispatch("getIndianStatesDataPie");
     }
   }
 };

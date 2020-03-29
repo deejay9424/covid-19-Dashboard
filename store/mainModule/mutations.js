@@ -38,7 +38,10 @@ export default {
         let _deaths = {};
         let _recovered = {};
 
-        let _labels = Object.keys(payload.timeline.cases).filter(x => new Date(x) >= (new Date().setDate(new Date(Object.keys(payload.timeline.cases)[0]).getDate() - 7)));
+        let _labels = Object.keys(payload.timeline.cases)
+            .filter(x =>
+                new Date(x) >= (new Date().setDate(new Date(Object.keys(payload.timeline.cases)[0]).getDate() - 1))
+            );
         _labels.forEach(e => {
             _cases[e] = payload.timeline.cases[e];
             // _deaths[e] = payload.timeline.deaths[e];
@@ -76,27 +79,6 @@ export default {
         state.indiaData.regional.deaths = [];
         state.indiaData.regional.recovered = [];
         if (payload.success) {
-            //Data
-            state.indiaData.pieChart.datasets[0].data.push(payload.data.summary.confirmedCasesIndian + payload.data.summary.confirmedCasesForeign);
-            state.indiaData.pieChart.datasets[0].data.push(payload.data.summary.deaths);
-            state.indiaData.pieChart.datasets[0].data.push(payload.data.summary.discharged);
-            //Colors
-            state.indiaData.pieChart.datasets[0].backgroundColor.push("#2d4275");
-            state.indiaData.pieChart.datasets[0].backgroundColor.push("red");
-            state.indiaData.pieChart.datasets[0].backgroundColor.push("green");
-            //Labels
-            state.indiaData.pieChart.labels.push("Cases");
-            state.indiaData.pieChart.labels.push("Deaths");
-            state.indiaData.pieChart.labels.push("Recovered");
-            //Options
-            state.indiaData.pieChart.option = {
-                legend: {
-                    display: true,
-                    position: 'left'
-                },
-                maintainAspectRatio: false,
-                responsive: true
-            }
             state.indiaData.regional.cases = [
                 ["State", "Cases"]
             ];
@@ -117,6 +99,29 @@ export default {
                     [element.loc, element.discharged]
                 );
             });
+        }
+    },
+    POPULATE_INDIA_PIE_DATA(state, payload) {
+        //Data
+        state.indiaData.pieChart.datasets[0].data.push(payload.cases);
+        state.indiaData.pieChart.datasets[0].data.push(payload.deaths);
+        state.indiaData.pieChart.datasets[0].data.push(payload.recovered);
+        //Colors
+        state.indiaData.pieChart.datasets[0].backgroundColor.push("#2d4275");
+        state.indiaData.pieChart.datasets[0].backgroundColor.push("red");
+        state.indiaData.pieChart.datasets[0].backgroundColor.push("green");
+        //Labels
+        state.indiaData.pieChart.labels.push("Cases");
+        state.indiaData.pieChart.labels.push("Deaths");
+        state.indiaData.pieChart.labels.push("Recovered");
+        //Options
+        state.indiaData.pieChart.option = {
+            legend: {
+                display: true,
+                position: 'left'
+            },
+            maintainAspectRatio: false,
+            responsive: true
         }
     }
 }

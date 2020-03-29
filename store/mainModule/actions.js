@@ -57,5 +57,19 @@ export default {
     catch (exp) {
       console.log(exp)
     }
+  },
+  getIndianStatesDataPie(context) {
+    try {
+      axios.get(process.env.baseURL + "countries/India")
+        .then(response => {
+          context.commit("POPULATE_INDIA_PIE_DATA", response.data);
+        })
+        .catch(exp => {
+          console.log(exp)
+        })
+    }
+    catch (exp) {
+      console.log(exp)
+    }
   }
 }

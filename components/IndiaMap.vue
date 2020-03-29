@@ -39,7 +39,9 @@ export default {
         },
         width: "100%",
         height: 250,
-        colors: this.chartColor
+        colors: this.chartColor,
+        datalessRegionColor: 'transparent',
+        displayMode: 'regions',
       };
       const geo_1_chart = new GoogleCharts.api.visualization.GeoChart(
         document.getElementById(this.divID)
